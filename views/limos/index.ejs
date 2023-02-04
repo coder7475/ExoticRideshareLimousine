@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="css/limos.css">
+
+<div class="container">
+<h2>Search Limousines</h2>
+<form action='/limos' method='GET'>
+    <div>
+        <label class="pb-3">Title</label>
+        
+        
+        
+        <input type='text' name='title' value="<%= searchOptions.title %>">
+
+    </div>
+   
+   <div> <button  class="btn btn-info" type='submit'>Search</button></div>
+    
+</form>
+
+<br>
+
+<% limos.forEach(limo => { %>
+
+    <div class="card vehicles" style="width: 18rem;">
+        <a href="/limos/<%= limo.id %>">
+        
+        <img src="<%= limo.coverImagePath %>" height='200' width='400' class="card-img float-left" alt="...">
+        </a>
+        
+        <div class="card-body">
+            <h5 class="card-title text-center">
+                <%= limo.title %>
+            </h5>
+            <p class="card-text ">
+                
+                    <h6 class="text-center">Price Per Hour: <%= limo.pricePerHour %>$</h6>
+                    <h6 class="text-center">Price Per Day: <%= limo.pricePerDay %>$</h6>
+                    <h6 class="text-center">Airport Transfer: <%= limo.airportTransfer %>$</h6>
+                    <h6 class="text-center">Price Per Km: <%= limo.pricePerKm %> $</h6>
+            </p>
+        <button type='submit' class='btn btn-info'>Book</button>
+    
+        </div>
+    </div>
+
+
+   <!-- <img height='600' width='400' src="<%= limo.coverImagePath %>"" > -->
+
+    <% }) %>
+
+    </div>

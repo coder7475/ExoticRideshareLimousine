@@ -1,0 +1,467 @@
+
+<!-- <link rel="stylesheet" href="css/styles.css"> -->
+<link rel="stylesheet" href="css/booking.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css" />
+
+
+
+<div class="container-fluid  booking-page g-3">
+
+    <div class="col-md-2 g-3">
+        <button class='btn btn-outline-dark btn-large direction' onclick="calcRoute();">
+            <i class='fas fa-directions text-white'>Click to Get Quote</i>
+        </button>
+    </div>
+
+        <form class="form-floating" action="/booking" method='POST' id='form-data'>
+
+            <div class="row g-1  mb-5">
+                <div class="col-md-3 g-3 ">
+                    <div class="form-floating ">
+                        <input type='text' id='from'  placeholder="From" class='form-control' name='from' value=""
+                            required>
+                        <label class="fw-bold fs-5 almendra" id='details' for="floatingInputGrid"> Pick Up Location</label>
+                    </div>
+                </div>
+
+                <div class="col-md-3 g-3">
+                    <div class="form-floating">
+                        <input type="text" id='to' placeholder="Destination" class="form-control" name='to' value="">
+                        <label class="fw-bold fs-5 almendra" for="floatingInputGrid">Drop off Destination</label>
+
+                    </div>
+                </div>
+                
+                      
+                
+               
+              
+            </div>
+
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <div class="container-fluid">
+                        <div id='googleMap'>
+                        </div>
+                        <div id='output'>
+                
+                        </div>
+                        <div id='prices'>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row g-1">
+                <div class="col-md-2 g-3">
+                    <label class="text-white almendra" for='date'>Pickup Date and Time</label>
+                
+                    <input class="" type="number" id="basicDate" placeholder="Please select Date Time" name='pickupDate' data-input>
+                
+                </div>
+                <div class="col-md-2 g-3">
+                    <label class="text-white text-center almendra" for='name'> Name</label>
+                    <br>
+                    <input type='text' id='name' name='name'>
+                </div>
+                <div class="col-md-2 g-3">
+                    <label class="text-white almendra" for='email'>Email</label>
+                    <br>
+                    <input  type='email' id='email' name='email'>
+                
+                </div>
+                <div class="col-md-2 g-3">
+                    <label class="text-white almendra" for='phone'>Phone</label>
+                    <br>
+                    <input type='number' id='phone' name='phone'>
+                
+                </div>
+                
+                <div class="col-md-2 g-3">
+                    <!-- <div class="form-floating"> -->
+                        <!-- <button class="btn btn-light btn-sm almendra" href="#" role="button" id="dropdownMenuLink"
+                            data-bs-toggle="dropdown" aria-expanded="true">
+                            Select Limo Type
+                        </button> -->
+                        <label class="text-white almendra" for='limo'>Select Limo Type</label>
+                        <ul class="dropdown col-md-2" aria-labelledby="dropdownMenuLink">
+                            
+                            <select name='limo' style='width: 300px;'>
+                                <option id="SEDAN" class="almendra">Sedan: Minimum Fare 65C$</option>
+                                <option id='SUV' class="almendra">SUV: Minimum Fare 85C$</option>
+                                <!-- <option id ='Slimo' >Long Limo Minimum Fair 95$</option> -->
+                                <!-- <option id='partyBus' >Party Bus Minimum Fair 115$ </option> -->
+                        
+                            </select>
+                        </ul>
+                        
+                
+                        
+              
+                </div>
+
+
+            </div>
+
+            <div class="row g-1">
+
+                <div class="card-group">
+                    <div class="card">
+                        <img src="/images/sedan.jpeg" class="card-img-top" alt="...">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title fw-bold almendra">Sedan</h5>
+                    
+                        </div>
+                    
+                    </div>
+                    <div class="card">
+                        <img src="/images/suv.jpeg" class="card-img-top" alt="...">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title  fw-bold almendra">SUV</h5>
+                    
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+                
+                
+
+                        <div class="row g-1 mb-5">
+                            <div class="col-md-4">
+                        
+                                <label class="text-white almendra" for='payment'>Card Info</label>
+                        
+                                <div class="card credit  ">
+                                    <img src="/images/visa-master-icon-28.jpg" class="img-fluid" alt="..." style="height:300px;">
+                        
+                                    <div class="card-img-overlay">
+                                        <!-- <h3 class="card__title">Enter Payment Information</h3> -->
+                        
+                                        <label for="cardHolder" class="card__label almendra">Card Holder Name</label>
+                                        <input type="text" class="card__input card__input--large" id="cardHolder" placeholder=""
+                                            name='cardHolder' />
+                        
+                                        <label for="cardNumber" class="card__label almendra">Card Number</label>
+                                        <input type="text" class="card__input card__input--large" id="cardNumber"
+                                            placeholder="xxxx-xxxx-xxxx-xxxx" name='cardNumber' />
+                        
+                        
+                                        <label for="cardExpiry" class="card__label almendra">Expiry Date</label><input type="text" class="card__input"
+                                            id="cardExpiry" placeholder="xx/xx" name='expiryDate' />
+                                        <label for="cardCcv" class="card__label almendra">CCV</label><input type="text" class="card__input" id="cardCcv"
+                                            placeholder="xxx" name='cardCcv' />
+                        
+                                        <div class="card__brand"><i id="cardBrand"></i></div>
+                                        <div class="col-md card__chip">
+                                            <img src="/images/chip.svg" alt="chip" />
+                                        </div>
+                                        <!-- </div>  -->
+                        
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                        
+                        
+                        
+                        
+                            <div class="col-md-2 g-3">
+                                <div class="form-floating">
+                                    <select class="form-select" id="childSeat" name='childSeat' aria-label="Floating label select example">
+                                        <optgroup label='yes'>
+                                        <optgroup label='Infant'>
+                                            <option selected></option>
+                                            <option value='Infant: 1'>1</option>
+                                            <option value='Infant: 2'>2</option>
+                                            <option value='Infant: 3'>3</option>
+                                        </optgroup>
+                                        <optgroup label='Toddler'>
+                                            <option value='Toddler: 1'>1</option>
+                                            <option value='Toddler: 2'>2</option>
+                                            <option value='Toddler: 3'>3</option>
+                                        </optgroup>
+                                        <optgroup label='Booster'>
+                                            <option value='Booster: 1'>1</option>
+                                            <option value='Booster: 2'>2</option>
+                                            <option value='Booster: 3'>3</option>
+                                        </optgroup>
+                        
+                        
+                        
+                                        </optgroup>
+                                        <option value="no">no</option>
+                                    </select>
+                                    <label class="fw-bold fs-5 almendra" for="floatingSelectGrid">Child Seat</label>
+                                </div>
+                        
+                            </div>
+                        
+                            <div class="col-md-2 g-3">
+                                <div class="form-floating">
+                                    <select class="form-select" id="people" name='people' aria-label="Floating label select example">
+                                        <option selected></option>
+                                        <option value="1">1</option>
+                                        <option value="2">3</option>
+                                        <option value="3">4</option>
+                                        <option value="4">5</option>
+                                        <option value="5">6</option>
+                                        <option value="6">7</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">10</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="14">15</option>
+                                    </select>
+                                    <label class="fw-bold fs-5 almendra" for="floatingSelectGrid">People</label>
+                                </div>
+                            </div>
+                        
+                            <div class="col-md-2 g-3">
+                                <div class="form-floating">
+                                    <select class="form-select" id="bags" name='bags' aria-label="Floating label select example">
+                                        <option selected></option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                        
+                                    </select>
+                                    <label class="fw-bold fs-5 almendra" for="floatingSelectGrid">Bags</label>
+                                </div>
+                        
+                            </div>
+                        
+                        
+                        
+                        
+                            <div class="row g-1 mb-5">
+                                <div class="col-md-3">
+                        
+                                    <!-- <button type='button' class='btn btn-warning prev'>Prev</button> -->
+                                    <button type='submit' class='btn btn-success btn-lg submit text-white almendra'>Book </button>
+                        
+                                </div>
+                        
+                        
+                            </div>
+                        
+                        
+                        
+                        
+                            </form>
+
+                         
+                        
+                        
+                        </div>
+
+            </div>
+             
+            
+  
+
+
+
+<!-- form validation script cleave js-->
+
+
+<script src="https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.min.js"></script>
+<script src="../javascripts/credit.js"></script>
+
+
+<!-- flatcpickr script -->
+<script src="../javascripts/datepicker.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
+
+
+<!-- select script -->
+<!-- <script>
+
+        function formatOptions(state) {
+                if (!state.id) { return state.text; }
+                var $state = $(
+                    '<span ><img sytle="display:block;" src="images/vehicles/' + state.element.value.toLowerCase() + '.jpg" /> ' + state.text + '</span>'
+                );
+                return $state;
+            }
+
+    $(document).ready(function () {
+        $("#social").select2({
+            templateResult: formatOptions
+        });
+    });
+
+
+
+</script> -->
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
+
+<script 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPVTJqtbtQxwLaBcdwGIv56MuSSJqXXoY&libraries=places">
+    </script>
+
+<script>
+
+    //set map options
+    
+
+
+    var myLatlng = { lat: 43.651070, lng: -79.347015 };
+    var mapOptions = {
+        center: myLatlng,
+        zoom: 7,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    //create Map 
+
+    var map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
+
+    //create a directions service object to use the route method and get a result for our request
+
+    var directionsService = new google.maps.DirectionsService();
+
+    // create a directions renderer object which we will use to display the route
+
+    var directionsDisplay = new  google.maps.DirectionsRenderer();
+
+    //bind the directionsRenderer to the map
+
+    directionsDisplay.setMap(map);
+
+    //function
+    
+  
+
+     function calcRoute() {
+        //create request
+        var request = {
+            origin: document.getElementById('from').value,
+            destination: document.getElementById('to').value,
+            travelMode: google.maps.TravelMode.DRIVING, //driving distance
+            unitSystem: google.maps.UnitSystem.METRIC
+        }
+
+     
+
+        //pass the request to the route method
+
+       directionsService.route(request, (result, status) => {
+
+    
+             if (status == google.maps.DirectionsStatus.OK) {
+                // get distance and time
+                const output = document.querySelector('#output');
+                output.innerHTML =
+                     "<div class='alert-info'> From: " + document.getElementById("from").value +
+                     ".<br/>To:" + document.getElementById('to').value + 
+                     ".<br/> Driving distance <i class='fas fa-road'></i>:" +
+                    result.routes[0].legs[0].distance.text
+                 ".<br/>Duration <i class='fas fa-hourglass-start'></i> : " + " .<br/> Price for SEDAN:"+ (result.routes[0].legs[0].distance.value / 1000) * 2
+                 ".<div/>";
+                 
+
+                const distance = result.routes[0].legs[0].distance.value;
+
+                //const price = document.getElementById('price');
+                const sedan = document.getElementById('SEDAN');
+                const suv = document.getElementById('SUV');
+                const SLimo = document.getElementById('Slimo');
+                const partyBus = document.getElementById('partyBus');
+                const prices = document.querySelector('#prices');
+
+                //const priceforDistance = document.getElementById('pricePerKm').innerHTML;
+                //const sedanprice = ((distance / 1000) * 1.75).toFixed()
+
+
+
+                if (((distance/1000)*1.85) > 65) {
+                   sedan.innerHTML = "Type Sedan: " + ((distance / 1000) * 1.85).toFixed() + "C$"; 
+                 } else{
+
+                   sedan.innerHTML = "Type Sedan: " + 65 + "C$";
+                 }
+                
+                 if(((distance / 1000) * 2.05) > 85) {
+                    suv.innerHTML = "Type SUV : " + ((distance / 1000) * 2.05).toFixed() + "C$";
+                 } else {
+
+                     suv.innerHTML = "Type SUV: " + 85 + "C$";
+                 }    
+
+                
+               
+                 
+
+                // SLimo.innerHTML = "Type Streched Limo : " + ((distance / 1000) * 2.25).toFixed()  + "$";
+
+                // partyBus.innerHTML = "Type Party Bus : " + ((distance / 1000) * 2.5).toFixed() + "$";
+
+
+                //display route
+                directionsDisplay.setDirections(result);
+
+            } else {
+                //delete route from  map
+                directionsDisplay.setDirections({ routes: [] });
+
+                //center map in toronto
+                map.setCenter(myLatlng);
+
+                //show error message
+                output.innerHTML = "<div class='alert-danger'> <i class='fas fa-exclamation-triangle'></i> Could not retrieve driving distance.  </div>";
+            }
+
+        })
+          
+       
+    }
+
+    //create auto complete objects for all input
+
+    var options = {
+            types: ["establishment", "geocode"],
+            componentRestrictions: { 'country': ['CA'] },
+            fields: ['place_id', 'geometry', 'name']
+        }
+
+    var input1 = document.getElementById('from');
+    var autocomplete1 = new google.maps.places.Autocomplete(input1, options);
+
+    var input2 = document.getElementById('to');
+    var autocomplete2 = new google.maps.places.Autocomplete(input2, options);
+
+
+   
+
+
+</script>
+
+
+
+
+
